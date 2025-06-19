@@ -9,7 +9,7 @@ function PreviewSign() {
   const [pdfUrl, setPdfUrl] = useState('');
 
   useEffect(() => {
-    setPdfUrl(`http://localhost:5000/api/download_personal/${personalId}`);
+    setPdfUrl(`/api/download_personal/${personalId}`);
   }, [personalId]);
 
   const handleSave = () => {
@@ -24,7 +24,7 @@ function PreviewSign() {
     const rawCanvas = canvasInstance.getCanvas();
     const dataURL = rawCanvas.toDataURL('image/png');
 
-    fetch(`http://localhost:5000/api/sign_personal/${personalId}`, {
+    fetch(`/api/sign_personal/${personalId}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ signature: dataURL })
@@ -32,7 +32,7 @@ function PreviewSign() {
       .then(res => res.json().then(js => ({ ok: res.ok, data: js })))
       .then(({ ok, data }) => {
         if (ok) {
-          window.location.href = `http://localhost:5000${data.signed_url}`;
+          window.location.href = data.signed_url;
         } else {
           setError(data.error || 'Signing failed.');
         }
