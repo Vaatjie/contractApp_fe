@@ -5,7 +5,7 @@ function ListVersions() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/list_contract_versions')
+    fetch('/api/list_contract_versions')
       .then(res => res.json().then(js => ({ ok: res.ok, data: js })))
       .then(({ ok, data }) => {
         if (ok) setVersions(data);
@@ -15,7 +15,7 @@ function ListVersions() {
   }, []);
 
   const handleActivate = (id) => {
-    fetch('http://localhost:5000/api/activate_contract', {
+    fetch('/api/activate_contract', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ template_id: id })

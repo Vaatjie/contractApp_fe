@@ -7,7 +7,7 @@ function ListPersonalized() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/list_personalized_contracts')
+    fetch('/api/list_personalized_contracts')
       .then(res => res.json().then(js => ({ ok: res.ok, data: js })))
       .then(({ ok, data }) => {
         if (ok) setContracts(data);
@@ -58,7 +58,7 @@ function ListPersonalized() {
                       {c.is_signed && (
                         <a
                           className="btn btn-sm btn-outline-success"
-                          href={`http://localhost:5000${c.signed_url}`}
+                          href={c.signed_url}
                           target="_blank"
                           rel="noreferrer"
                         >

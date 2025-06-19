@@ -14,7 +14,7 @@ function FillContract() {
 
   useEffect(() => {
     // fetch active contract URL to preview
-    fetch('http://localhost:5000/api/active_contract')
+    fetch('/api/active_contract')
       .then(res => res.json().then(js => ({ ok: res.ok, data: js })))
       .then(({ ok, data }) => {
         if (ok) setActiveURL(data.pdf_url);
@@ -36,7 +36,7 @@ function FillContract() {
       return;
     }
     try {
-      const res = await fetch('http://localhost:5000/api/create_personal', {
+      const res = await fetch('/api/create_personal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -67,7 +67,7 @@ function FillContract() {
               <p className="text-muted">
                 <strong>Step 1:</strong>{' '}
                 <a
-                  href={`http://localhost:5000${activeURL}`}
+                  href={activeURL}
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -5,7 +5,7 @@ function ViewActive() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/active_contract')
+    fetch('/api/active_contract')
       .then((res) => res.json().then(js => ({ ok: res.ok, data: js })))
       .then(({ ok, data }) => {
         if (ok) {
@@ -26,7 +26,7 @@ function ViewActive() {
       {template && (
         <>
           <iframe
-            src={`http://localhost:5000${template.pdf_url}`}
+            src={template.pdf_url}
             style={{ width: '100%', height: '75vh', border: '1px solid #ccc', borderRadius: '.25rem' }}
             title="Active Contract"
           ></iframe>

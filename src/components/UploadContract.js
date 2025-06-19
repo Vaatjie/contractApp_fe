@@ -23,7 +23,7 @@ function UploadContract() {
     formData.append('contract_pdf', file);
 
     try {
-      const res = await fetch('http://localhost:5000/api/upload_contract', {
+      const res = await fetch('/api/upload_contract', {
         method: 'POST',
         body: formData
       });
